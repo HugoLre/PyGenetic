@@ -19,10 +19,13 @@ image_width, image_height = src_image.size
 # Create base population
 pop = Population(100, src_image.convert("RGB"), image_width, image_height)
 
-# Clean evolution directory
-for f in os.listdir("evolution"):
-    path = os.path.join("evolution/", f)
-    os.remove(path)
+# Create or clean evolution directory
+if not os.path.exists("evolution"):
+    os.makedirs("evolution")
+else:
+    for f in os.listdir("evolution"):
+        path = os.path.join("evolution/", f)
+        os.remove(path)
 
 # Infinite evole loop
 x = []
